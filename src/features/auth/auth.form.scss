@@ -1,0 +1,160 @@
+// auth.form.scss
+
+@use "sass:color";
+
+// ─── Variables ────────────────────────────────────────────
+$bg: #0d0d0f;
+$surface: #18181c;
+$border: #2a2a32;
+$border-focus: #6c63ff;
+$text-primary: #f0f0f5;
+$text-muted: #6b6b7a;
+$accent: #6c63ff;
+$accent-hover: #5a52e0;
+$input-bg: #111115;
+$radius: 10px;
+$transition: 0.2s ease;
+
+// ─── Main Layout ──────────────────────────────────────────
+.auth-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $bg;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(108, 99, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(108, 99, 255, 0.05) 0%, transparent 50%);
+    font-family: 'Georgia', serif;
+
+    // ─── Card ────────────────────────────────────────────
+    > div {
+        width: 100%;
+        max-width: 420px;
+        padding: 2.5rem;
+        background: $surface;
+        border: 1px solid $border;
+        border-radius: 16px;
+        box-shadow:
+            0 0 0 1px rgba(108, 99, 255, 0.05),
+            0 24px 64px rgba(0, 0, 0, 0.5);
+        animation: fadeUp 0.5s ease both;
+    }
+
+    // ─── Heading ─────────────────────────────────────────
+    h1 {
+        font-size: 1.75rem;
+        font-weight: normal;
+        color: $text-primary;
+        letter-spacing: 0.01em;
+        margin: 0 0 2rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid $border;
+    }
+
+    // ─── Form ────────────────────────────────────────────
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    // ─── Input Group ─────────────────────────────────────
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+
+        label {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: $text-muted;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: $input-bg;
+            border: 1px solid $border;
+            border-radius: $radius;
+            color: $text-primary;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color $transition, box-shadow $transition;
+            box-sizing: border-box;
+
+            &::placeholder {
+                color: $text-muted;
+                opacity: 0.6;
+            }
+
+            &:focus {
+                border-color: $border-focus;
+                box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+            }
+        }
+    }
+
+    // ─── Button ──────────────────────────────────────────
+    .button.primary-button {
+        margin-top: 0.5rem;
+        width: 100%;
+        padding: 0.8rem 1rem;
+        background: $accent;
+        color: #fff;
+        border: none;
+        border-radius: $radius;
+        font-size: 0.9rem;
+        font-family: inherit;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background $transition, transform $transition, box-shadow $transition;
+
+        &:hover {
+            background: $accent-hover;
+            box-shadow: 0 4px 20px rgba(108, 99, 255, 0.35);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+    }
+
+     // ─── Redirect Link ──────────────────────────────────
+  .auth-redirect {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: $text-muted;
+
+    a {
+      color: $accent;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color $transition, color $transition;
+
+            &:hover {
+                color: color.adjust(#6c63ff, $lightness: 12%);
+                border-bottom-color: currentColor;
+            }
+    }
+  }
+}
+
+// ─── Animation ────────────────────────────────────────────
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
